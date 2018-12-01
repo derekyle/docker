@@ -137,6 +137,9 @@ The easiest way to get a fully featured and functional setup is using a `docker-
 
 At first make sure you have chosen the right base image (fpm or apache) and added the features you wanted (see below). In every case you want to add a database container and docker volumes to get easy access to your persistent data. When you want to have your server reachable from the internet adding HTTPS-encryption is mandatory! See below for more information.
 
+# Running this image in a Docker for Windows environment
+Due to limitations of Docker for Windows, if you wish to map your data directory to a location in your host filesystem (e.g. - c:\your_dir:/var/www/html ) rather than using a named volume (e.g. - nextcloud:/var/www/html ) you will need to include the 'check_data_directory_permissions'=>false parameter in your config.php array. This turns off the directory permissions check that will throw a directory permissions error when mounting a volume from Windows.
+
 ## Base version - apache
 This version will use the apache image and add a mariaDB container. The volumes are set to keep your data persistent. This setup provides **no ssl encryption** and is intended to run behind a proxy.
 
